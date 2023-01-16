@@ -15,11 +15,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Get Commit SHA
+      run: export git_hash=$(git rev-parse --short "$GITHUB_SHA")
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file dockerfile --tag my-image-name:$(date +%s)
+      run: docker build . --file dockerfile --tag my-image-name:$git_hash
     - name: Run Docker Container
-      run: docker run my-image-name:$(date +%s)
+      run: docker run my-image-name:$git_hash
       
   new-job:
     runs-on: ubuntu-latest
