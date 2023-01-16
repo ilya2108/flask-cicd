@@ -19,7 +19,7 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file dockerfile --tag my-image-name:1.0
     - name: Run Docker Container
-      run: docker run my-image-name:1.0
+      run: docker run -d my-image-name:1.0
       
   new-job:
     runs-on: ubuntu-latest
